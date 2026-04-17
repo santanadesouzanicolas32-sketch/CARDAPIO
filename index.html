@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Churrasco Grego — Lanches Artesanais</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-raised: #1c1c1c;
+      --amber: #d10c0c;
+      --amber-dark: #d97706;
+      --amber-glow: rgba(245, 158, 11, 0.15);
+      --red: #dc2626;
+      --red-soft: #fca5a5;
+      --text: #f5f5f4;
+      --text-muted: #a8a29e;
+      --text-dim: #78716c;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════ HEADER ══════════ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .header-logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+    .header-info {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .header-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .header-name span {
+      color: var(--amber);
+    }
+
+    .header-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .header-meta a {
+      color: var(--amber);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .header-meta a:hover {
+      color: var(--amber-dark);
+    }
+
+    .header-address {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ══════════ HERO BANNER ══════════ */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 60px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: var(--amber);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 40px;
+      margin-bottom: 20px;
+      animation: fadeInDown 0.6s ease;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 8vw, 80px);
+      line-height: 0.95;
+      letter-spacing: 3px;
+      animation: fadeInDown 0.7s ease 0.1s both;
+    }
+
+    .hero h1 span {
+      color: var(--amber);
+    }
+
+    .hero p {
+      max-width: 500px;
+      margin: 16px auto 0;
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.6;
+      animation: fadeInDown 0.7s ease 0.2s both;
+    }
+
+    .hero-cta {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--amber);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 30px rgba(245, 158, 11, 0.3);
+      animation: fadeInDown 0.7s ease 0.3s both;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 40px rgba(245, 158, 11, 0.45);
+    }
+
+    /* ══════════ FILTERS ══════════ */
+    .filtros-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px 0;
+      position: sticky;
+      top: 89px;
+      z-index: 90;
+      background: var(--bg);
+    }
+
+    .filtros-inner {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      scrollbar-width: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .filtros-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filtro-btn {
+      flex-shrink: 0;
+      padding: 10px 22px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+
+    .filtro-btn:hover {
+      border-color: rgba(245, 158, 11, 0.3);
+      color: var(--text);
+    }
+
+    .filtro-btn.active {
+      background: var(--amber);
+      color: var(--bg);
+      border-color: var(--amber);
+      box-shadow: 0 2px 16px rgba(245, 158, 11, 0.25);
+    }
+
+    /* ══════════ PRODUCT GRID ══════════ */
+    .main-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .section-title span {
+      color: var(--amber);
+    }
+
+    .section-count {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+    }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* ══════════ PRODUCT CARD ══════════ */
+    .prod-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .prod-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 158, 11, 0.2);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(245, 158, 11, 0.1);
+    }
+
+    .prod-img-wrap {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      background: var(--surface-raised);
+    }
+
+    .prod-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .prod-card:hover .prod-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .prod-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .prod-badge.popular {
+      background: var(--amber);
+      color: var(--bg);
+    }
+
+    .prod-body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .prod-category {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .prod-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .prod-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .prod-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .prod-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      color: var(--amber);
+      letter-spacing: 1px;
+    }
+
+    .prod-price small {
+      font-size: 14px;
+      color: var(--text-dim);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .prod-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--amber);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .prod-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+    }
+
+    /* ══════════ INFO BAR (acompanhamentos / pão / extras) ══════════ */
+    .menu-info {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .menu-info-block {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .menu-info-block h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+
+    .menu-info-block p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ══════════ WHATSAPP FAB ══════════ */
+    .wpp-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      text-decoration: none;
+      transition: transform 0.2s;
+      animation: fabPulse 2s infinite;
+      border: none;
+      cursor: pointer;
+    }
+
+    .wpp-fab:hover {
+      transform: scale(1.1);
+    }
+
+    .wpp-fab svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+    }
+
+    .wpp-fab .fab-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 11px;
+      background: var(--amber);
+      color: var(--bg);
+      font-size: 12px;
+      font-weight: 700;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .wpp-fab .fab-badge.visible {
+      display: flex;
+    }
+
+    /* ══════════ FOOTER ══════════ */
+    .site-footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+
+    .site-footer span {
+      color: var(--amber);
+    }
+
+    /* ══════════ TOAST (feedback ao adicionar no carrinho) ══════════ */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      z-index: 1100;
+      background: var(--surface-raised);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════ PERSONALIZAÇÃO (modal de opções) ══════════ */
+    .pers-product {
+      margin-bottom: 18px;
+    }
+
+    .pers-product-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .pers-product-base {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .pers-group {
+      margin-bottom: 18px;
+    }
+
+    .pers-group-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      color: var(--amber);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pers-group-title .req {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      background: var(--red);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    .pers-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--surface-raised);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      margin-bottom: 6px;
+    }
+
+    .pers-option:hover {
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+
+    .pers-option input {
+      accent-color: var(--amber);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .pers-option.checked {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.06);
+    }
+
+    .pers-option-label {
+      flex: 1;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .pers-option-price {
+      font-size: 13px;
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    /* ══════════ CART MODAL ══════════ */
+    .cart-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .cart-modal.open {
+      display: flex;
+    }
+
+    .cart-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      animation: fadeInOverlay 0.25s ease;
+    }
+
+    .cart-content {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      max-height: 92vh;
+      background: var(--surface);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border: 1px solid rgba(245, 158, 11, 0.12);
+      border-bottom: none;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: slideUpCart 0.3s ease;
+    }
+
+    @media (min-width: 640px) {
+      .cart-modal {
+        align-items: center;
+      }
+
+      .cart-content {
+        border-radius: 20px;
+        border-bottom: 1px solid rgba(245, 158, 11, 0.12);
+      }
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .cart-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+    }
+
+    .cart-header h2 span {
+      color: var(--amber);
+    }
+
+    .cart-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 6px;
+      transition: color 0.2s;
+    }
+
+    .cart-close:hover {
+      color: var(--text);
+    }
+
+    .cart-body {
+      padding: 18px 24px 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 30px 10px;
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--surface-raised);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .cart-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 2px;
+      color: var(--text);
+    }
+
+    .cart-item-price {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .cart-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: var(--amber);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      line-height: 1;
+      transition: background 0.2s;
+    }
+
+    .qty-btn:hover {
+      background: rgba(245, 158, 11, 0.2);
+    }
+
+    .qty-num {
+      min-width: 18px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .cart-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .cart-form input,
+    .cart-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--surface-raised);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .cart-form input:focus,
+    .cart-form textarea:focus {
+      outline: none;
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .cart-form input::placeholder,
+    .cart-form textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    .cart-totals {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 14px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .cart-row.total {
+      font-size: 16px;
+      color: var(--text);
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .cart-row.total .val {
+      color: var(--amber);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .cart-finish {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25d366;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .cart-finish:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+    }
+
+    .cart-finish:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .cart-finish svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
+
+    /* ══════════ ANIMATIONS ══════════ */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fabPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 4px 30px rgba(37, 211, 102, 0.65);
+      }
+    }
+
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUpCart {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ══════════ RESPONSIVE ══════════ */
+    @media (max-width: 640px) {
+      .header-inner {
+        gap: 12px;
+      }
+
+      .header-logo {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+      }
+
+      .header-name {
+        font-size: 22px;
+      }
+
+      .header-meta {
+        align-items: flex-start;
+        margin-top: 4px;
+        width: 100%;
+      }
+
+      .filtros-wrap {
+        top: 77px;
+      }
+
+      .prod-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 56px 20px 44px;
+      }
+    }
+
+    /* stagger animation */
+    .prod-card:nth-child(1) { animation-delay: 0s; }
+    .prod-card:nth-child(2) { animation-delay: 0.05s; }
+    .prod-card:nth-child(3) { animation-delay: 0.1s; }
+    .prod-card:nth-child(4) { animation-delay: 0.15s; }
+    .prod-card:nth-child(5) { animation-delay: 0.2s; }
+    .prod-card:nth-child(6) { animation-delay: 0.25s; }
+    .prod-card:nth-child(7) { animation-delay: 0.3s; }
+    .prod-card:nth-child(8) { animation-delay: 0.35s; }
+    .prod-card:nth-child(9) { animation-delay: 0.4s; }
+    .prod-card:nth-child(10) { animation-delay: 0.45s; }
+    .prod-card:nth-child(11) { animation-delay: 0.5s; }
+    .prod-card:nth-child(12) { animation-delay: 0.55s; }
+    .prod-card:nth-child(13) { animation-delay: 0.6s; }
+    .prod-card:nth-child(14) { animation-delay: 0.65s; }
+    .prod-card:nth-child(15) { animation-delay: 0.7s; }
+
+    /* hide filtered cards */
+    .prod-card.hidden {
+      display: none;
+    }
+
+    /* no results */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-dim);
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-logo"> <img src="logo.jpg" alt="Churrasco Grego VG"> </div>
+      <div class="header-info">
+        <div class="header-name">CHURRASCO <span>GREGO</span></div>
+        <div class="header-desc">Lanches Artesanais • Tradicionais • Especiais</div>
+      </div>
+      <div class="header-meta">
+        <a href="https://instagram.com/churrascogrego_vg" target="_blank">@churrascogrego_vg</a>
+        <div class="header-address">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          R. Domingos Nogueira, 15D — Jd. Dracena, Sp
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-badge">🔥 O verdadeiro sabor do Grego</div>
+    <h1>SABOR QUE<br><span>MARCA</span></h1>
+    <p>Lanches artesanais preparados na hora, com ingredientes selecionados e aquele sabor que não tem igual.</p>
+    <button type="button" class="hero-cta" onclick="abrirCarrinho()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+        <path
+          d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 0 0 .613.613l4.458-1.495A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.584l-.386-.232-2.646.887.887-2.646-.232-.386A9.94 9.94 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+      </svg>
+      Pedir pelo WhatsApp
+    </button>
+  </section>
+
+  <!-- ═══ FILTROS ═══ -->
+  <div class="filtros-wrap">
+    <div class="filtros-inner" id="filtros">
+      <button class="filtro-btn active" data-cat="tradicional">🍔 Grego tradicionais</button>
+      <button class="filtro-btn" data-cat="especial">🔥 Grego especiais</button>
+      <button class="filtro-btn" data-cat="bebida">🥤 Bebidas</button>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN / PRODUCTS ═══ -->
+  <main class="main-section">
+    <div class="section-title">NOSSO <span>CARDÁPIO</span></div>
+    <div class="section-count" id="count">0 itens</div>
+
+    <div class="prod-grid" id="prodGrid">
+
+      <!-- ════════ TRADICIONAIS ════════ -->
+      <div class="prod-card" data-cat="tradicional" data-name="Grego Tradicional" data-price="18.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop"
+            alt="Grego Tradicional" loading="lazy">
+          <span class="prod-badge popular">⭐ Mais Pedido</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Grego Tradicional</div>
+          <div class="prod-name">GREGO TRADICIONAL</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 18 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="tradicional" data-name="Grego com Ovo" data-price="20.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop" alt="Grego com Ovo"
+            loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Grego Tradicional</div>
+          <div class="prod-name">GREGO COM OVO</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete, mais um ovo grelhado. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 20 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="tradicional" data-name="Grego Duplo" data-price="25.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&h=400&fit=crop" alt="Grego Duplo"
+            loading="lazy">
+          <span class="prod-badge">Reforçado</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Grego Tradicional</div>
+          <div class="prod-name">GREGO DUPLO</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete, com carne em dose dupla. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 25 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ ESPECIAIS ════════ -->
+      <div class="prod-card" data-cat="especial" data-name="Grego especial e calabresa" data-price="28.00">
+        <div class="prod-img-wrap">
+          <img src="Grego especia na baguete catubacon.jpeg"
+            alt="Grego na baguete catubacon" loading="lazy">
+          <span class="prod-badge popular">🔥 Destaque</span>
+        </div>
+        <div class="prod-body"> ,                                                                     
+          <div class="prod-category">Grego Especial</div>
+          <div class="prod-name"> Grego na baguete catubacon</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete, finalizado com cheddar cremoso e bacon crocante. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 28 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="especial" data-name="Grego com Queijo" data-price="22.00">
+        <div class="prod-img-wrap">
+          <img src="Grego especial na baguete calabresa.jpg"
+            alt="Grego na baguete calabresa" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Grego Especial</div>
+          <div class="prod-name">GREGO NA BAGUETE E CALABRESA</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete, com uma generosa fatia de queijo derretido. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 22 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="especial" data-name="Grego Dois Queijos" data-price="25.00">
+        <div class="prod-img-wrap">
+          <img src="Baguete dois queijos Churrasco grego suculento + MUITO queijo derretendo e catupiry.png"
+            alt="Grego Dois Queijos" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Grego Especial</div>
+          <div class="prod-name">Grego na baguete dois queijos</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete, com mussarela e cheddar derretidos. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 25 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="especial" data-name="Grego com Pasta de Alho" data-price="23.00">
+        <div class="prod-img-wrap">
+          <img src="Grego na baguele pasta de alho.jpeg"
+            alt="Grego com Pasta de Alho" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Grego Especial</div>
+          <div class="prod-name">Grego na baguete pasta de alho</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete, com pasta de alho artesanal da casa. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 23 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="especial" data-name="Grego com Calabresa" data-price="24.00">
+        <div class="prod-img-wrap">
+          <img src="Churrasco grego na baguete com linguiça apimentada… suculento, bem temperado e com aquele toque picante irresistível! Temos a opção de pão Francês.jpg"
+            alt="Grego com Calabresa" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Grego Especial</div>
+          <div class="prod-name">Grego na baguete picante</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete, com calabresa fatiada na chapa. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 24 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="especial" data-name="Grego Picante" data-price="26.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=600&h=400&fit=crop"
+            alt="Grego Picante" loading="lazy">
+          <span class="prod-badge">🌶️ Picante</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Grego Especial</div>
+          <div class="prod-name">GREGO PICANTE</div>
+          <div class="prod-desc">Todos os lanches acompanham pão, carne, salada e molho da casa com vinagrete, finalizado com pimenta especial e molho apimentado. Opções de pão: baguete e francês tradicional.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 26 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ BEBIDAS ════════ -->
+      <div class="prod-card" data-cat="bebida" data-name="Coca-Cola" data-price="7.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=600&h=400&fit=crop" alt="Coca-Cola"
+            loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Bebida</div>
+          <div class="prod-name">COCA-COLA</div>
+          <div class="prod-desc">Refrigerante Coca-Cola gelado, lata 350ml.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 7 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="bebida" data-name="Fanta Uva" data-price="7.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13?w=600&h=400&fit=crop" alt="Fanta Uva"
+            loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Bebida</div>
+          <div class="prod-name">FANTA UVA</div>
+          <div class="prod-desc">Refrigerante Fanta Uva gelado, lata 350ml.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 7 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="bebida" data-name="Fanta Laranja" data-price="7.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1624517452488-04869289c4ca?w=600&h=400&fit=crop"
+            alt="Fanta Laranja" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Bebida</div>
+          <div class="prod-name">FANTA LARANJA</div>
+          <div class="prod-desc">Refrigerante Fanta Laranja gelado, lata 350ml.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 7 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="bebida" data-name="Guaraná Antarctica" data-price="7.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=600&h=400&fit=crop"
+            alt="Guaraná Antarctica" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Bebida</div>
+          <div class="prod-name">GUARANÁ ANTARCTICA</div>
+          <div class="prod-desc">Refrigerante Guaraná Antarctica gelado, lata 350ml.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 7 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="bebida" data-name="Coca Zero" data-price="7.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&h=400&fit=crop" alt="Coca Zero"
+            loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Bebida</div>
+          <div class="prod-name">COCA ZERO</div>
+          <div class="prod-desc">Refrigerante Coca-Cola Zero gelado, lata 350ml.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 7 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="bebida" data-name="Água Mineral" data-price="3.00">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=600&h=400&fit=crop" alt="Água Mineral"
+            loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-category">Bebida</div>
+          <div class="prod-name">ÁGUA MINERAL</div>
+          <div class="prod-desc">Água mineral gelada, garrafa 500ml.</div>
+          <div class="prod-footer">
+            <div class="prod-price">R$ 3 <small>,00</small></div>
+            <button class="prod-btn" onclick="adicionarItem(this)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══ INFORMAÇÕES DO CARDÁPIO ═══ -->
+    <div class="menu-info">
+      <div class="menu-info-block">
+        <h3>OPÇÕES DE PÃO</h3>
+        <p>Baguete e francês tradicional.</p>
+      </div>
+      <div class="menu-info-block">
+        <h3>ACOMPANHAMENTOS</h3>
+        <p>Molho verde da casa e salada.</p>
+      </div>
+      <div class="menu-info-block">
+        <h3>ADICIONAIS — R$ 5,00</h3>
+        <p>Bacon, calabresa, cheddar, catupiry e bebida.</p>
+      </div>
+      <div class="menu-info-block">
+        <h3>BEBIDAS</h3>
+        <p>Coca-Cola, Fanta Uva, Fanta Laranja, Guaraná Antarctica e Coca Zero e Água.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    © 2026 <span>Churrasco Grego da Vg</span>
+    <p>Desenvolvido por Nicolas Santana de Souza.</p>
+    <p> @nicoo__santana — (11 96503-0076).</p>
+  </footer>
+
+  <!-- ═══ WHATSAPP FAB (também abre o carrinho quando há itens) ═══ -->
+  <button type="button" class="wpp-fab" id="wppFab" aria-label="WhatsApp / Carrinho" onclick="acaoFab()">
+    <svg viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path
+        d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 0 0 .613.613l4.458-1.495A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.584l-.386-.232-2.646.887.887-2.646-.232-.386A9.94 9.94 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+    </svg>
+    <span class="fab-badge" id="fabBadge">0</span>
+  </button>
+
+  <!-- ═══ TOAST ═══ -->
+  <div class="toast" id="toast">Item adicionado ✓</div>
+
+  <!-- ═══ MODAL DE PERSONALIZAÇÃO DO LANCHE ═══ -->
+  <div class="cart-modal" id="persModal" role="dialog" aria-modal="true" aria-labelledby="persTitle">
+    <div class="cart-overlay" onclick="fecharPersonalizacao()"></div>
+    <div class="cart-content">
+      <div class="cart-header">
+        <h2 id="persTitle">PERSONALIZE SEU <span>LANCHE</span></h2>
+        <button class="cart-close" onclick="fecharPersonalizacao()" aria-label="Fechar">×</button>
+      </div>
+      <div class="cart-body">
+        <div class="pers-product">
+          <div class="pers-product-name" id="persName">—</div>
+          <div class="pers-product-base" id="persBase">A partir de R$ 0,00</div>
+        </div>
+
+        <div class="pers-group">
+          <div class="pers-group-title">ESCOLHA O PÃO <span class="req">obrigatório</span></div>
+          <label class="pers-option">
+            <input type="radio" name="persPao" value="Francês tradicional" data-extra="0">
+            <span class="pers-option-label">Francês tradicional</span>
+            <span class="pers-option-price">Incluso</span>
+          </label>
+          <label class="pers-option">
+            <input type="radio" name="persPao" value="Baguete" data-extra="3">
+            <span class="pers-option-label">Baguete</span>
+            <span class="pers-option-price">+ R$ 3,00</span>
+          </label>
+        </div>
+
+        <div class="pers-group">
+          <div class="pers-group-title">ACOMPANHAMENTOS</div>
+          <label class="pers-option">
+            <input type="checkbox" name="persAcomp" value="Molho verde da casa" data-extra="0">
+            <span class="pers-option-label">Molho verde da casa</span>
+            <span class="pers-option-price">Incluso</span>
+          </label>
+          <label class="pers-option">
+            <input type="checkbox" name="persAcomp" value="Salada" data-extra="0">
+            <span class="pers-option-label">Salada</span>
+            <span class="pers-option-price">Incluso</span>
+          </label>
+        </div>
+
+        <div class="pers-group">
+          <div class="pers-group-title">ADICIONAIS — R$ 5,00 cada</div>
+          <label class="pers-option">
+            <input type="checkbox" name="persAdic" value="Bacon" data-extra="5">
+            <span class="pers-option-label">Bacon</span>
+            <span class="pers-option-price">+ R$ 5,00</span>
+          </label>
+          <label class="pers-option">
+            <input type="checkbox" name="persAdic" value="Calabresa" data-extra="5">
+            <span class="pers-option-label">Calabresa</span>
+            <span class="pers-option-price">+ R$ 5,00</span>
+          </label>
+          <label class="pers-option">
+            <input type="checkbox" name="persAdic" value="Cheddar" data-extra="5">
+            <span class="pers-option-label">Cheddar</span>
+            <span class="pers-option-price">+ R$ 5,00</span>
+          </label>
+          <label class="pers-option">
+            <input type="checkbox" name="persAdic" value="Catupiry" data-extra="5">
+            <span class="pers-option-label">Catupiry</span>
+            <span class="pers-option-price">+ R$ 5,00</span>
+          </label>
+          <label class="pers-option">
+            <input type="checkbox" name="persAdic" value="Bebida" data-extra="5">
+            <span class="pers-option-label">Bebida</span>
+            <span class="pers-option-price">+ R$ 5,00</span>
+          </label>
+        </div>
+
+        <div class="cart-totals">
+          <div class="cart-row total"><span>Total do item</span><span class="val" id="persTotal">R$ 0,00</span></div>
+        </div>
+
+        <button type="button" class="cart-finish" id="persAddBtn" onclick="confirmarPersonalizacao()" disabled>
+          Adicionar ao carrinho
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MODAL DO CARRINHO ═══ -->
+  <div class="cart-modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="cart-overlay" onclick="fecharCarrinho()"></div>
+    <div class="cart-content">
+      <div class="cart-header">
+        <h2 id="cartTitle">SEU <span>PEDIDO</span></h2>
+        <button class="cart-close" onclick="fecharCarrinho()" aria-label="Fechar">×</button>
+      </div>
+      <div class="cart-body">
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-empty" id="cartEmpty">Seu carrinho está vazio. Adicione itens do cardápio para continuar.</div>
+
+        <div class="cart-form">
+          <input type="text" id="custName" placeholder="Seu nome completo" autocomplete="name">
+          <input type="text" id="custAddress" placeholder="Endereço de entrega (rua, número, bairro)" autocomplete="street-address">
+          <textarea id="custNotes" placeholder="Observações (opcional) — ex: pão francês, sem cebola, adicional bacon..." rows="2"></textarea>
+        </div>
+
+        <div class="cart-totals">
+          <div class="cart-row"><span>Subtotal dos produtos</span><span id="cartSubtotal">R$ 0,00</span></div>
+          <div class="cart-row"><span>Taxa de entrega (motoboy)</span><span id="cartFee">R$ 8,00</span></div>
+          <div class="cart-row total"><span>Total</span><span class="val" id="cartTotal">R$ 0,00</span></div>
+        </div>
+
+        <button type="button" class="cart-finish" id="finishBtn" onclick="finalizarPedido()">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            <path
+              d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 0 0 .613.613l4.458-1.495A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.584l-.386-.232-2.646.887.887-2.646-.232-.386A9.94 9.94 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+          </svg>
+          Finalizar pelo WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════
+    // CONFIGURAÇÕES — ajuste estes valores conforme necessário
+    // ═══════════════════════════════════════════════════
+    const WHATSAPP_NUMBER = '5511965030076'; // formato: 55 + DDD + número (sem +, espaços ou traços)
+    const TAXA_ENTREGA   = 8.00;             // valor da taxa de entrega (motoboy) em R$
+
+    // ═══════════════════════════════════════════════════
+    // FILTROS
+    // ═══════════════════════════════════════════════════
+    const filtros = document.querySelectorAll('.filtro-btn');
+    const cards   = document.querySelectorAll('.prod-card');
+    const countEl = document.getElementById('count');
+
+    function aplicarFiltro(cat) {
+      let visible = 0;
+      cards.forEach(card => {
+        const match = card.dataset.cat === cat;
+        card.classList.toggle('hidden', !match);
+        if (match) {
+          visible++;
+          card.style.animation = 'none';
+          card.offsetHeight; // reflow
+          card.style.animation = '';
+        }
+      });
+      countEl.textContent = `${visible} ${visible === 1 ? 'item' : 'itens'}`;
+    }
+
+    filtros.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filtros.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        aplicarFiltro(btn.dataset.cat);
+      });
+    });
+
+    // Filtro inicial (categoria do botão ativo)
+    aplicarFiltro(document.querySelector('.filtro-btn.active').dataset.cat);
+
+    // ═══════════════════════════════════════════════════
+    // CARRINHO
+    // ═══════════════════════════════════════════════════
+    // Estrutura do item:
+    // { key, name, basePrice, pao, paoExtra, acomps:[], adicionais:[], adicionaisExtra, unitPrice, qty }
+    const carrinho = [];
+
+    // Gera uma chave única baseada em nome + personalizações (para agrupar iguais)
+    function gerarKey(name, pao, acomps, adicionais) {
+      const a = [...acomps].sort().join(',');
+      const d = [...adicionais].sort().join(',');
+      return `${name}|${pao || ''}|${a}|${d}`;
+    }
+
+    // Se for bebida → adiciona direto. Se for lanche → abre modal de personalização
+    function adicionarItem(btn) {
+      const card = btn.closest('.prod-card');
+      const cat  = card.dataset.cat;
+
+      if (cat === 'bebida') {
+        const name  = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+        inserirNoCarrinho({
+          name,
+          basePrice: price,
+          pao: null,
+          paoExtra: 0,
+          acomps: [],
+          adicionais: [],
+          adicionaisExtra: 0,
+          unitPrice: price
+        });
+        mostrarToast(`${name} adicionado ✓`);
+      } else {
+        abrirPersonalizacao(card);
+      }
+    }
+
+    function inserirNoCarrinho(item) {
+      const key = gerarKey(item.name, item.pao, item.acomps, item.adicionais);
+      const existente = carrinho.find(i => i.key === key);
+      if (existente) {
+        existente.qty += 1;
+      } else {
+        carrinho.push({ ...item, key, qty: 1 });
+      }
+      atualizarBadge();
+      renderCarrinho();
+    }
+
+    function removerItem(key) {
+      const idx = carrinho.findIndex(i => i.key === key);
+      if (idx >= 0) carrinho.splice(idx, 1);
+      atualizarBadge();
+      renderCarrinho();
+    }
+
+    function alterarQtd(key, delta) {
+      const item = carrinho.find(i => i.key === key);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        removerItem(key);
+      } else {
+        atualizarBadge();
+        renderCarrinho();
+      }
+    }
+
+    function totalItens() {
+      return carrinho.reduce((acc, i) => acc + i.qty, 0);
+    }
+
+    function subtotalCarrinho() {
+      return carrinho.reduce((acc, i) => acc + (i.unitPrice * i.qty), 0);
+    }
+
+    function formatBRL(v) {
+      return 'R$ ' + v.toFixed(2).replace('.', ',');
+    }
+
+    function atualizarBadge() {
+      const badge = document.getElementById('fabBadge');
+      const total = totalItens();
+      badge.textContent = total;
+      badge.classList.toggle('visible', total > 0);
+    }
+
+    // ═══════════════════════════════════════════════════
+    // MODAL DE PERSONALIZAÇÃO
+    // ═══════════════════════════════════════════════════
+    let persAtual = null; // { name, basePrice }
+
+    function abrirPersonalizacao(card) {
+      persAtual = {
+        name: card.dataset.name,
+        basePrice: parseFloat(card.dataset.price)
+      };
+
+      document.getElementById('persName').textContent = persAtual.name;
+      document.getElementById('persBase').textContent = 'A partir de ' + formatBRL(persAtual.basePrice);
+
+      // Reseta todas as seleções
+      document.querySelectorAll('#persModal input[type="radio"], #persModal input[type="checkbox"]')
+        .forEach(inp => { inp.checked = false; });
+      document.querySelectorAll('#persModal .pers-option')
+        .forEach(el => el.classList.remove('checked'));
+
+      atualizarTotalPers();
+      document.getElementById('persModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fecharPersonalizacao() {
+      document.getElementById('persModal').classList.remove('open');
+      document.body.style.overflow = '';
+      persAtual = null;
+    }
+
+    function lerPersonalizacao() {
+      const paoInput = document.querySelector('#persModal input[name="persPao"]:checked');
+      const pao      = paoInput ? paoInput.value : null;
+      const paoExtra = paoInput ? parseFloat(paoInput.dataset.extra) : 0;
+
+      const acomps = [...document.querySelectorAll('#persModal input[name="persAcomp"]:checked')]
+        .map(i => i.value);
+
+      const adicInputs = [...document.querySelectorAll('#persModal input[name="persAdic"]:checked')];
+      const adicionais = adicInputs.map(i => i.value);
+      const adicionaisExtra = adicInputs.reduce((acc, i) => acc + parseFloat(i.dataset.extra), 0);
+
+      return { pao, paoExtra, acomps, adicionais, adicionaisExtra };
+    }
+
+    function atualizarTotalPers() {
+      if (!persAtual) return;
+      const { paoExtra, adicionaisExtra, pao } = lerPersonalizacao();
+      const total = persAtual.basePrice + paoExtra + adicionaisExtra;
+      document.getElementById('persTotal').textContent = formatBRL(total);
+
+      // Só habilita o botão quando o pão (obrigatório) foi escolhido
+      document.getElementById('persAddBtn').disabled = !pao;
+
+      // Destaca visualmente as opções marcadas
+      document.querySelectorAll('#persModal .pers-option').forEach(el => {
+        const inp = el.querySelector('input');
+        el.classList.toggle('checked', inp && inp.checked);
+      });
+    }
+
+    // Recalcula sempre que qualquer opção muda
+    document.getElementById('persModal').addEventListener('change', atualizarTotalPers);
+
+    function confirmarPersonalizacao() {
+      if (!persAtual) return;
+      const { pao, paoExtra, acomps, adicionais, adicionaisExtra } = lerPersonalizacao();
+      if (!pao) {
+        alert('Escolha o tipo de pão antes de adicionar ao carrinho.');
+        return;
+      }
+
+      const unitPrice = persAtual.basePrice + paoExtra + adicionaisExtra;
+
+      inserirNoCarrinho({
+        name: persAtual.name,
+        basePrice: persAtual.basePrice,
+        pao,
+        paoExtra,
+        acomps,
+        adicionais,
+        adicionaisExtra,
+        unitPrice
+      });
+
+      mostrarToast(`${persAtual.name} adicionado ✓`);
+      fecharPersonalizacao();
+    }
+
+    // ═══════════════════════════════════════════════════
+    // RENDER DO CARRINHO
+    // ═══════════════════════════════════════════════════
+    function renderCarrinho() {
+      const itemsEl = document.getElementById('cartItems');
+      const emptyEl = document.getElementById('cartEmpty');
+      const finishBtn = document.getElementById('finishBtn');
+
+      itemsEl.innerHTML = '';
+
+      if (carrinho.length === 0) {
+        emptyEl.style.display = 'block';
+        finishBtn.disabled = true;
+      } else {
+        emptyEl.style.display = 'none';
+        finishBtn.disabled = false;
+
+        carrinho.forEach(item => {
+          // Monta linhas de detalhes (personalizações)
+          const detalhes = [];
+          if (item.pao) detalhes.push(`Pão: ${item.pao}${item.paoExtra > 0 ? ' (+' + formatBRL(item.paoExtra) + ')' : ''}`);
+          if (item.acomps && item.acomps.length) detalhes.push(`Acomp.: ${item.acomps.join(', ')}`);
+          if (item.adicionais && item.adicionais.length) detalhes.push(`Adicionais: ${item.adicionais.join(', ')}`);
+
+          const detalhesHtml = detalhes.length
+            ? `<div class="cart-item-price" style="margin-top:4px;font-size:11px;color:var(--text-dim);">${detalhes.join(' · ')}</div>`
+            : '';
+
+          const row = document.createElement('div');
+          row.className = 'cart-item';
+          row.innerHTML = `
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">${formatBRL(item.unitPrice)} cada · ${formatBRL(item.unitPrice * item.qty)}</div>
+              ${detalhesHtml}
+            </div>
+            <div class="cart-qty">
+              <button type="button" class="qty-btn" data-key="${item.key}" data-delta="-1" aria-label="Diminuir">−</button>
+              <span class="qty-num">${item.qty}</span>
+              <button type="button" class="qty-btn" data-key="${item.key}" data-delta="1" aria-label="Aumentar">+</button>
+            </div>
+          `;
+          itemsEl.appendChild(row);
+        });
+
+        // Listener nos botões de qtd (evita problemas de escape em onclick inline)
+        itemsEl.querySelectorAll('.qty-btn').forEach(b => {
+          b.addEventListener('click', () => {
+            alterarQtd(b.dataset.key, parseInt(b.dataset.delta, 10));
+          });
+        });
+      }
+
+      const sub   = subtotalCarrinho();
+      const total = sub > 0 ? sub + TAXA_ENTREGA : 0;
+      document.getElementById('cartSubtotal').textContent = formatBRL(sub);
+      document.getElementById('cartFee').textContent      = formatBRL(TAXA_ENTREGA);
+      document.getElementById('cartTotal').textContent    = formatBRL(total);
+    }
+
+    // ═══════════════════════════════════════════════════
+    // MODAL
+    // ═══════════════════════════════════════════════════
+    function abrirCarrinho() {
+      document.getElementById('cartModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      renderCarrinho();
+    }
+
+    function fecharCarrinho() {
+      document.getElementById('cartModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // FAB: se tiver itens, abre o carrinho; senão, vai direto ao WhatsApp
+    function acaoFab() {
+      if (totalItens() > 0) {
+        abrirCarrinho();
+      } else {
+        const msg = encodeURIComponent('Olá! Gostaria de fazer um pedido.');
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+      }
+    }
+
+    // Fecha modais com ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        fecharCarrinho();
+        fecharPersonalizacao();
+      }
+    });
+
+    // ═══════════════════════════════════════════════════
+    // FINALIZAR PEDIDO → WhatsApp
+    // ═══════════════════════════════════════════════════
+    function finalizarPedido() {
+      if (carrinho.length === 0) return;
+
+      const nome     = document.getElementById('custName').value.trim();
+      const endereco = document.getElementById('custAddress').value.trim();
+      const obs      = document.getElementById('custNotes').value.trim();
+
+      if (!nome) {
+        alert('Por favor, informe seu nome.');
+        document.getElementById('custName').focus();
+        return;
+      }
+      if (!endereco) {
+        alert('Por favor, informe o endereço de entrega.');
+        document.getElementById('custAddress').focus();
+        return;
+      }
+
+      const sub   = subtotalCarrinho();
+      const total = sub + TAXA_ENTREGA;
+
+      let msg  = `*🍔 NOVO PEDIDO — CHURRASCO GREGO*\n\n`;
+      msg += `*Cliente:* ${nome}\n`;
+      msg += `*Endereço:* ${endereco}\n\n`;
+      msg += `*🧾 ITENS DO PEDIDO:*\n`;
+      carrinho.forEach(item => {
+        msg += `• ${item.qty}x ${item.name} — ${formatBRL(item.unitPrice * item.qty)}\n`;
+        if (item.pao) {
+          msg += `   Pão: ${item.pao}${item.paoExtra > 0 ? ' (+' + formatBRL(item.paoExtra) + ')' : ''}\n`;
+        }
+        if (item.acomps && item.acomps.length) {
+          msg += `   Acompanhamentos: ${item.acomps.join(', ')}\n`;
+        }
+        if (item.adicionais && item.adicionais.length) {
+          msg += `   Adicionais: ${item.adicionais.join(', ')} (+${formatBRL(item.adicionaisExtra)} por unidade)\n`;
+        }
+      });
+      msg += `\n*Subtotal dos produtos:* ${formatBRL(sub)}\n`;
+      msg += `*Taxa de entrega (motoboy):* ${formatBRL(TAXA_ENTREGA)}\n`;
+      msg += `*TOTAL A PAGAR:* ${formatBRL(total)}\n`;
+      if (obs) msg += `\n*Observações:* ${obs}\n`;
+      msg += `\nAguardo confirmação. Obrigado! 🙌`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+    // ═══════════════════════════════════════════════════
+    // TOAST
+    // ═══════════════════════════════════════════════════
+    let toastTimer = null;
+    function mostrarToast(texto) {
+      const t = document.getElementById('toast');
+      t.textContent = texto;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+    }
+
+    // Inicialização
+    atualizarBadge();
+    renderCarrinho();
+  </script>
+</body>
+
+</html>
